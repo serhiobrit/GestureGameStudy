@@ -57,13 +57,13 @@ class ViewController: UIViewController {
         
         print("first view panned")
         
-        for value in Int(secondViewFrame.minY)...Int(secondViewFrame.maxY) {                if Int(firstViewFrame.origin.y) <= value {
+        for value in Int(secondViewFrame.minY)...Int(secondViewFrame.maxY) {                if Int(firstViewFrame.origin.y) == value {
             firstView.isHidden = true
             secondView.transform = CGAffineTransform(scaleX: 2, y: 2)
             }
         }
         
-        for value in Int(thirdViewFrame.minY)...Int(thirdViewFrame.maxY) {                if Int(firstViewFrame.origin.y) <= value {
+        for value in Int(thirdViewFrame.minY)...Int(thirdViewFrame.maxY) {                if Int(firstViewFrame.origin.y) == value {
             firstView.isHidden = true
             thirdView.transform = CGAffineTransform(scaleX: 2, y: 2)
             }
@@ -92,13 +92,13 @@ class ViewController: UIViewController {
         
         print("second view panned")
         
-        for value in Int(firstViewFrame.minY)...Int(firstViewFrame.maxY) {                if Int(secondViewFrame.origin.y) <= value {
+        for value in Int(firstViewFrame.minY)...Int(firstViewFrame.maxY) {                if Int(secondViewFrame.origin.y) == value {
             secondView.isHidden = true
             firstView.transform = CGAffineTransform(scaleX: 2, y: 2)
             }
         }
         
-        for value in Int(thirdViewFrame.minY)...Int(thirdViewFrame.maxY) {                if Int(secondViewFrame.origin.y) <= value {
+        for value in Int(thirdViewFrame.minY)...Int(thirdViewFrame.maxY) {                if Int(secondViewFrame.origin.y) == value {
             secondView.isHidden = true
             thirdView.transform = CGAffineTransform(scaleX: 2, y: 2)
             }
