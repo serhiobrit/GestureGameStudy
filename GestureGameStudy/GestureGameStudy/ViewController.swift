@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         
         let firstViewFrame = firstView.frame
         let secondViewFrame = secondView.frame
-        //        let thirdViewFrame = thirdView.frame
+        let thirdViewFrame = thirdView.frame
         //        let fourthViewFrame = fourthView.frame
         //        let fifthViewFrame = fifthView.frame
         //        let sixthViewFrame = sixthView.frame
@@ -59,13 +59,22 @@ class ViewController: UIViewController {
         
         for value in Int(secondViewFrame.minY)...Int(secondViewFrame.maxY) {                if Int(firstViewFrame.origin.y) <= value {
             firstView.isHidden = true
-            secondView.frame = CGRect(x: secondView.frame.origin.x, y: secondView.frame.origin.y, width: secondView.frame.width + 0.5, height: secondView.frame.height + 0.5)
-
+            secondView.transform = CGAffineTransform(scaleX: 2, y: 2)
+            }
+        }
+        
+        for value in Int(thirdViewFrame.minY)...Int(thirdViewFrame.maxY) {                if Int(firstViewFrame.origin.y) <= value {
+            firstView.isHidden = true
+            thirdView.transform = CGAffineTransform(scaleX: 2, y: 2)
             }
         }
     }
     
     @IBAction func secondViewPanAction(_ gesture: UIPanGestureRecognizer) {
+        
+        let firstViewFrame = firstView.frame
+        let secondViewFrame = secondView.frame
+        let thirdViewFrame = thirdView.frame
         
         let gestureTranslation = gesture.translation(in: view)
         
@@ -82,6 +91,18 @@ class ViewController: UIViewController {
         }
         
         print("second view panned")
+        
+        for value in Int(firstViewFrame.minY)...Int(firstViewFrame.maxY) {                if Int(secondViewFrame.origin.y) <= value {
+            secondView.isHidden = true
+            firstView.transform = CGAffineTransform(scaleX: 2, y: 2)
+            }
+        }
+        
+        for value in Int(thirdViewFrame.minY)...Int(thirdViewFrame.maxY) {                if Int(secondViewFrame.origin.y) <= value {
+            secondView.isHidden = true
+            thirdView.transform = CGAffineTransform(scaleX: 2, y: 2)
+            }
+        }
         
     }
     
