@@ -14,10 +14,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var secondView: CustomView!
     @IBOutlet weak var thirdView: CustomView!
     @IBOutlet weak var fourthView: CustomView!
-    @IBOutlet weak var fifthView: CustomView!
-    @IBOutlet weak var sixthView: CustomView!
-    @IBOutlet weak var seventhView: CustomView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +22,11 @@ class ViewController: UIViewController {
         secondView.backgroundColor = .clear
         thirdView.backgroundColor = .clear
         fourthView.backgroundColor = .clear
-        fifthView.backgroundColor = .clear
-        sixthView.backgroundColor = .clear
-        seventhView.backgroundColor = .clear
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     @IBAction func firstViewPanAction(_ gesture: UIPanGestureRecognizer) {
@@ -36,10 +34,7 @@ class ViewController: UIViewController {
         let firstViewFrame = firstView.frame
         let secondViewFrame = secondView.frame
         let thirdViewFrame = thirdView.frame
-//        let fourthViewFrame = fourthView.frame
-//        let fifthViewFrame = fifthView.frame
-//        let sixthViewFrame = sixthView.frame
-//        let seventhViewFrame = seventhView.frame
+        let fourthViewFrame = fourthView.frame
         
         let gestureTranslation = gesture.translation(in: view)
         
@@ -49,7 +44,7 @@ class ViewController: UIViewController {
         
         gestureView.center = CGPoint(x: gestureView.center.x + gestureTranslation.x, y: gestureView.center.y + gestureTranslation.y)
         
-        gesture.setTranslation(.zero, in: view)
+        gesture.setTranslation(.zero, in: firstView)
         
         guard gesture.state == .ended else {
             return
@@ -59,22 +54,42 @@ class ViewController: UIViewController {
         
         for value in Int(secondViewFrame.minY)...Int(secondViewFrame.maxY) {                if Int(firstViewFrame.origin.y) == value {
             firstView.isHidden = true
-            //secondView.transform = CGAffineTransform(scaleX: 2, y: 2)
-            secondView.workingView.frame.size.height += 15
-            secondView.workingView.frame.size.width += 15
-            secondView.workingView.layer.cornerRadius = secondView.workingView.frame.size.width / 2
-            secondView.workingView.backgroundColor = .purple
+            
+            UIView.animate(withDuration: 3,
+                           delay: 0,
+                           options: .curveEaseIn) {
+                self.secondView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                self.secondView.workingView.backgroundColor = .purple
             }
+            
+            //            secondView.workingView.layer.cornerRadius = secondView.workingView.frame.size.width / 2
+        }
         }
         
         for value in Int(thirdViewFrame.minY)...Int(thirdViewFrame.maxY) {                if Int(firstViewFrame.origin.y) == value {
             firstView.isHidden = true
-            //thirdView.transform = CGAffineTransform(scaleX: 2, y: 2)
-            thirdView.workingView.frame.size.height += 15
-            thirdView.workingView.frame.size.width += 15
-            thirdView.workingView.layer.cornerRadius = thirdView.workingView.frame.size.width / 2
-            thirdView.workingView.backgroundColor = .purple
+            
+            UIView.animate(withDuration: 3,
+                           delay: 0,
+                           options: .curveEaseIn) {
+                self.thirdView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                self.thirdView.workingView.backgroundColor = .green
             }
+            
+        }
+        }
+        
+        for value in Int(fourthViewFrame.minY)...Int(fourthViewFrame.maxY) {                if Int(firstViewFrame.origin.y) == value {
+            firstView.isHidden = true
+            
+            UIView.animate(withDuration: 3,
+                           delay: 0,
+                           options: .curveEaseIn) {
+                self.fourthView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                self.fourthView.workingView.backgroundColor = .red
+            }
+            
+        }
         }
     }
     
@@ -83,6 +98,7 @@ class ViewController: UIViewController {
         let firstViewFrame = firstView.frame
         let secondViewFrame = secondView.frame
         let thirdViewFrame = thirdView.frame
+        let fourthViewFrame = fourthView.frame
         
         let gestureTranslation = gesture.translation(in: view)
         
@@ -102,22 +118,41 @@ class ViewController: UIViewController {
         
         for value in Int(firstViewFrame.minY)...Int(firstViewFrame.maxY) {                if Int(secondViewFrame.origin.y) == value {
             secondView.isHidden = true
-            //firstView.transform = CGAffineTransform(scaleX: 2, y: 2)
-            firstView.workingView.frame.size.height += 15
-            firstView.workingView.frame.size.width += 15
-            firstView.workingView.layer.cornerRadius = firstView.workingView.frame.size.width / 2
-            firstView.workingView.backgroundColor = .purple
+            
+            UIView.animate(withDuration: 3,
+                           delay: 0,
+                           options: .curveEaseIn) {
+                self.firstView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                self.firstView.workingView.backgroundColor = .yellow
             }
+            
+        }
         }
         
         for value in Int(thirdViewFrame.minY)...Int(thirdViewFrame.maxY) {                if Int(secondViewFrame.origin.y) == value {
             secondView.isHidden = true
-           // thirdView.transform = CGAffineTransform(scaleX: 2, y: 2)
-            thirdView.workingView.frame.size.height += 15
-            thirdView.workingView.frame.size.width += 15
-            thirdView.workingView.layer.cornerRadius = thirdView.workingView.frame.size.width / 2
-            thirdView.workingView.backgroundColor = .purple
+            
+            UIView.animate(withDuration: 3,
+                           delay: 0,
+                           options: .curveEaseIn) {
+                self.thirdView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                self.thirdView.workingView.backgroundColor = .lightGray
             }
+            
+        }
+        }
+        
+        for value in Int(fourthViewFrame.minY)...Int(fourthViewFrame.maxY) {                if Int(secondViewFrame.origin.y) == value {
+            secondView.isHidden = true
+            
+            UIView.animate(withDuration: 3,
+                           delay: 0,
+                           options: .curveEaseIn) {
+                self.fourthView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                self.fourthView.workingView.backgroundColor = .systemPink
+            }
+            
+        }
         }
         
     }
@@ -128,6 +163,7 @@ class ViewController: UIViewController {
         let firstViewFrame = firstView.frame
         let secondViewFrame = secondView.frame
         let thirdViewFrame = thirdView.frame
+        let fourthViewFrame = fourthView.frame
         
         let gestureTranslation = gesture.translation(in: view)
         
@@ -147,26 +183,50 @@ class ViewController: UIViewController {
         
         for value in Int(firstViewFrame.minY)...Int(firstViewFrame.maxY) {                if Int(thirdViewFrame.origin.y) == value {
             thirdView.isHidden = true
-            //firstView.transform = CGAffineTransform(scaleX: 2, y: 2)
-            firstView.workingView.frame.size.height += 15
-            firstView.workingView.frame.size.width += 15
-            firstView.workingView.layer.cornerRadius = firstView.workingView.frame.size.width / 2
-            firstView.workingView.backgroundColor = .purple
+            
+            UIView.animate(withDuration: 3,
+                           delay: 0,
+                           options: .curveEaseIn) {
+                self.firstView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                self.firstView.workingView.backgroundColor = .systemGreen
             }
+            
         }
-
+        }
+        
         for value in Int(secondViewFrame.minY)...Int(secondViewFrame.maxY) {                if Int(thirdViewFrame.origin.y) == value {
             thirdView.isHidden = true
-            //secondView.transform = CGAffineTransform(scaleX: 2, y: 2)
-            secondView.workingView.frame.size.height += 15
-            secondView.workingView.frame.size.width += 15
-            secondView.workingView.layer.cornerRadius = secondView.workingView.frame.size.width / 2
-            secondView.workingView.backgroundColor = .purple
+            
+            UIView.animate(withDuration: 3,
+                           delay: 0,
+                           options: .curveEaseIn) {
+                self.secondView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                self.secondView.workingView.backgroundColor = .blue
             }
+            
+        }
+        }
+        
+        for value in Int(fourthViewFrame.minY)...Int(fourthViewFrame.maxY) {                if Int(thirdViewFrame.origin.y) == value {
+            thirdView.isHidden = true
+            
+            UIView.animate(withDuration: 3,
+                           delay: 0,
+                           options: .curveEaseIn) {
+                self.fourthView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                self.fourthView.workingView.backgroundColor = .blue
+            }
+            
+        }
         }
     }
     
     @IBAction func fourthViewPanAction(_ gesture: UIPanGestureRecognizer) {
+        
+        let firstViewFrame = firstView.frame
+        let secondViewFrame = secondView.frame
+        let thirdViewFrame = thirdView.frame
+        let fourthViewFrame = fourthView.frame
         
         let gestureTranslation = gesture.translation(in: view)
         
@@ -183,66 +243,46 @@ class ViewController: UIViewController {
         }
         
         print("fourth view panned")
+        
+        for value in Int(firstViewFrame.minY)...Int(firstViewFrame.maxY) {                if Int(fourthViewFrame.origin.y) == value {
+            fourthView.isHidden = true
+            
+            UIView.animate(withDuration: 3,
+                           delay: 0,
+                           options: .curveEaseIn) {
+                self.firstView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                self.firstView.workingView.backgroundColor = .magenta
+            }
+            
+        }
+        }
+        
+        for value in Int(secondViewFrame.minY)...Int(secondViewFrame.maxY) {                if Int(fourthViewFrame.origin.y) == value {
+            fourthView.isHidden = true
+            
+            UIView.animate(withDuration: 3,
+                           delay: 0,
+                           options: .curveEaseIn) {
+                self.secondView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                self.secondView.workingView.backgroundColor = .systemIndigo
+            }
+            
+        }
+        }
+        
+        for value in Int(thirdViewFrame.minY)...Int(thirdViewFrame.maxY) {                if Int(fourthViewFrame.origin.y) == value {
+            fourthView.isHidden = true
+            
+            UIView.animate(withDuration: 3,
+                           delay: 0,
+                           options: .curveEaseIn) {
+                self.thirdView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                self.thirdView.workingView.backgroundColor = .orange
+            }
+            
+        }
+        }
     }
-    
-    @IBAction func fifthViewPanAction(_ gesture: UIPanGestureRecognizer) {
-        
-        let gestureTranslation = gesture.translation(in: view)
-        
-        guard let gestureView = gesture.view else {
-            return
-        }
-        
-        gestureView.center = CGPoint(x: gestureView.center.x + gestureTranslation.x, y: gestureView.center.y + gestureTranslation.y)
-        
-        gesture.setTranslation(.zero, in: view)
-        
-        guard gesture.state == .ended else {
-            return
-        }
-        
-        print("fifth view panned")
-    }
-    
-    @IBAction func sixthViewPanAction(_ gesture: UIPanGestureRecognizer) {
-        
-        let gestureTranslation = gesture.translation(in: view)
-        
-        guard let gestureView = gesture.view else {
-            return
-        }
-        
-        gestureView.center = CGPoint(x: gestureView.center.x + gestureTranslation.x, y: gestureView.center.y + gestureTranslation.y)
-        
-        gesture.setTranslation(.zero, in: view)
-        
-        guard gesture.state == .ended else {
-            return
-        }
-        
-        print("sixth view panned")
-    }
-    
-    
-    @IBAction func seventhViewPanAction(_ gesture: UIPanGestureRecognizer) {
-        
-        let gestureTranslation = gesture.translation(in: view)
-        
-        guard let gestureView = gesture.view else {
-            return
-        }
-        
-        gestureView.center = CGPoint(x: gestureView.center.x + gestureTranslation.x, y: gestureView.center.y + gestureTranslation.y)
-        
-        gesture.setTranslation(.zero, in: view)
-        
-        guard gesture.state == .ended else {
-            return
-        }
-        
-        print("seventh view panned")
-    }
-    
     
 }
 
